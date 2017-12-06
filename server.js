@@ -3,8 +3,17 @@ var app = express();
 
 app.use(express.static('assets'));
 
+app.use('/store', function (req, res, next) {
+    console.log('Pośrednik działa dla /store');
+    next();
+});
+
 app.get('/', function (req, res) {
     res.send('./index.html');
+});
+
+app.get('/store', function(req, res) {
+    res.send('To jest sklep');
 });
 
 app.get('/userform', function (req, res) {
